@@ -1,0 +1,132 @@
+<?php
+$module_name = 'nli_ServiceAddresses';
+$viewdefs [$module_name] = 
+array (
+  'DetailView' => 
+  array (
+    'templateMeta' => 
+    array (
+      'form' => 
+      array (
+        'buttons' => 
+        array (
+          0 => 'EDIT',
+          1 => 'DUPLICATE',
+          2 => 'DELETE',
+          3 => 'FIND_DUPLICATES',
+        ),
+      ),
+      'maxColumns' => '2',
+      'widths' => 
+      array (
+        0 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+        1 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+      ),
+      'useTabs' => false,
+      'syncDetailEditViews' => true,
+    ),
+    'panels' => 
+    array (
+      'default' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'name',
+            'label' => 'LBL_NAME',
+          ),
+          1 => 
+          array (
+            'name' => 'nli_service_accounts_name',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'service_address_street',
+            'label' => 'LBL_SERVICE_ADDRESS',
+            'type' => 'address',
+            'displayParams' => 
+            array (
+              'key' => 'service',
+            ),
+          ),
+          1 => 
+          array (
+            'name' => 'is_private_residence',
+            'studio' => 'visible',
+            'label' => 'LBL_IS_PRIVATE_RESIDENCE',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'client_occupation_date',
+            'label' => 'LBL_CLIENT_OCCUPATION_DATE',
+          ),
+          1 => 
+          array (
+            'name' => 'interaction_pmgr_requred',
+            'studio' => 'visible',
+            'label' => 'LBL_INTERACTION_PMGR_REQURED',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'extend_dmarc',
+            'studio' => 'visible',
+            'label' => 'LBL_EXTEND_DMARC',
+          ),
+          1 => 
+          array (
+            'name' => 'mpoe_access',
+            'studio' => 'visible',
+            'label' => 'LBL_MPOE_ACCESS',
+          ),
+        ),
+        4 => 
+        array (
+          0 => 
+          array (
+            'name' => 'demarc_location',
+            'label' => 'LBL_DEMARC_LOCATION',
+          ),
+          1 => 
+          array (
+            'name' => 'ip_required',
+            'label' => 'LBL_IP_REQUIRED',
+          ),
+        ),
+        5 => 
+        array (
+          0 => 
+          array (
+            'name' => 'nextlevel_router',
+            'studio' => 'visible',
+            'label' => 'LBL_NEXTLEVEL_ROUTER',
+          ),
+          1 => 
+          array (
+            'name' => 'additional_nextlevel_hardware',
+            'studio' => 'visible',
+            'label' => 'LBL_ADDITIONAL_NEXTLEVEL_HARDWARE',
+          ),
+        ),
+      ),
+    ),
+  ),
+);
+?>

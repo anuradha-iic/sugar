@@ -1,0 +1,154 @@
+<?php
+$module_name = 'nli_ServiceAddresses';
+$viewdefs [$module_name] = 
+array (
+  'DetailView' => 
+  array (
+    'templateMeta' => 
+    array (
+      'form' => 
+      array (
+        'buttons' => 
+        array (
+          0 => 'EDIT',
+          1 => 'DUPLICATE',
+          2 => 'DELETE',
+          3 => 'FIND_DUPLICATES',
+        ),
+      ),
+      'maxColumns' => '2',
+      'widths' => 
+      array (
+        0 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+        1 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+      ),
+      'useTabs' => false,
+      'syncDetailEditViews' => true,
+    ),
+    'panels' => 
+    array (
+      'default' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'name',
+            'label' => 'LBL_NAME',
+          ),
+          1 => 
+          array (
+            'name' => 'relatedcontactid_c',
+            'studio' => 'visible',
+            'label' => 'LBL_RELATEDCONTACTID',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'accountuserrelated_c',
+            'studio' => 'visible',
+            'label' => 'LBL_ACCOUNTUSERRELATED',
+          ),
+          1 => 
+          array (
+            'name' => 'service_address_street',
+            'label' => 'LBL_SERVICE_ADDRESS',
+            'type' => 'address',
+            'displayParams' => 
+            array (
+              'key' => 'service',
+            ),
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'is_private_residence',
+            'studio' => 'visible',
+            'label' => 'LBL_IS_PRIVATE_RESIDENCE',
+          ),
+          1 => 
+          array (
+            'name' => 'client_occupation_date',
+            'label' => 'LBL_CLIENT_OCCUPATION_DATE',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'interaction_pmgr_requred',
+            'studio' => 'visible',
+            'label' => 'LBL_INTERACTION_PMGR_REQURED',
+          ),
+          1 => 
+          array (
+            'name' => 'extend_dmarc',
+            'studio' => 'visible',
+            'label' => 'LBL_EXTEND_DMARC',
+          ),
+        ),
+        4 => 
+        array (
+          0 => 
+          array (
+            'name' => 'mpoe_access',
+            'studio' => 'visible',
+            'label' => 'LBL_MPOE_ACCESS',
+          ),
+          1 => 
+          array (
+            'name' => 'demarc_location',
+            'label' => 'LBL_DEMARC_LOCATION',
+          ),
+        ),
+        5 => 
+        array (
+          0 => 
+          array (
+            'name' => 'ip_required',
+            'label' => 'LBL_IP_REQUIRED',
+          ),
+          1 => 
+          array (
+            'name' => 'nextlevel_router',
+            'studio' => 'visible',
+            'label' => 'LBL_NEXTLEVEL_ROUTER',
+          ),
+        ),
+        6 => 
+        array (
+          0 => 
+          array (
+            'name' => 'additional_nextlevel_hardware',
+            'studio' => 'visible',
+            'label' => 'LBL_ADDITIONAL_NEXTLEVEL_HARDWARE',
+          ),
+          1 => 
+          array (
+            'name' => 'leads_nli_saddresses_name',
+          ),
+        ),
+        7 => 
+        array (
+          0 => 
+          array (
+            'name' => 'aos_quotes_addresses_name',
+          ),
+        ),
+      ),
+    ),
+  ),
+);
+?>

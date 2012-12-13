@@ -1,0 +1,6 @@
+12/06/12 08:38:09 [3960][1][FATAL] SMTP -> ERROR: Failed to connect to server. Code: 0 Reply:  
+12/06/12 08:38:09 [3960][1][FATAL] SugarPHPMailer encountered an error: SMTP Error: Could not connect to SMTP host.
+12/06/12 08:38:09 [3960][1][FATAL] SugarPHPMailer encountered an error: An outgoing mail server is not configured to send emails. Please configure an outgoing mail server or select an outgoing mail server for the mail account that you are using in Settings >> Mail Account.
+12/06/12 08:44:01 [3960][1][FATAL] SMTP -> ERROR: Failed to connect to server. Code: 0 Reply:  
+12/06/12 08:44:01 [3960][1][FATAL] SugarPHPMailer encountered an error: SMTP Error: Could not connect to SMTP host.
+12/06/12 08:44:01 [3960][1][FATAL] SugarPHPMailer encountered an error: An outgoing mail server is not configured to send emails. Please configure an outgoing mail server or select an outgoing mail server for the mail account that you are using in Settings >> Mail Account.

@@ -1,0 +1,1 @@
+After install, uninstall or repair Alineasol for this module, make a "Repair JS Files".

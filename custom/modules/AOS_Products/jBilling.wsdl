@@ -1,0 +1,2893 @@
+<?xml version="1.0" ?><wsdl:definitions name="WebServicesSessionSpringBeanService" targetNamespace="http://util.server.jbilling.sapienter.com/" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://util.server.jbilling.sapienter.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://util.server.jbilling.sapienter.com/" xmlns:tns="http://util.server.jbilling.sapienter.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:complexType name="invoiceWS">
+<xs:sequence>
+<xs:element minOccurs="0" name="balance" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="carriedBalance" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="createDateTime" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="createTimeStamp" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="currencyId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="customerNotes" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="delegatedInvoiceId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="deleted" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="dueDate" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="inProcessPayment" type="xs:int"></xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="invoiceLines" nillable="true" type="tns:invoiceLineDTO"></xs:element>
+<xs:element minOccurs="0" name="isReview" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="lastReminder" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="number" type="xs:string"></xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="orders" nillable="true" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="overdueStep" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="paymentAttempts" type="xs:int"></xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="payments" nillable="true" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="statusId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="toProcess" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="total" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="invoiceLineDTO">
+<xs:sequence>
+<xs:element minOccurs="0" name="amount" type="xs:decimal"></xs:element>
+<xs:element minOccurs="0" name="deleted" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="isPercentage" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="itemId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="price" type="xs:decimal"></xs:element>
+<xs:element minOccurs="0" name="primaryKey" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="quantity" type="xs:decimal"></xs:element>
+<xs:element minOccurs="0" name="sourceUserId" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="orderWS">
+<xs:sequence>
+<xs:element minOccurs="0" name="activeSince" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="activeUntil" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="anticipatePeriods" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="billingTypeId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="billingTypeStr" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="createdBy" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="currencyId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="cycleStarts" type="xs:dateTime"></xs:element>
+<xs:element name="deleted" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="dfFm" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="dueDateUnitId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="dueDateValue" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="isCurrent" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="lastNotified" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="nextBillableDay" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="notes" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="notesInInvoice" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="notificationStep" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="notify" type="xs:int"></xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="orderLines" nillable="true" type="tns:orderLineWS"></xs:element>
+<xs:element minOccurs="0" name="ownInvoice" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="period" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="periodStr" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="pricingFields" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="statusId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="statusStr" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="timeUnitStr" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="versionNum" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="orderLineWS">
+<xs:sequence>
+<xs:element minOccurs="0" name="amount" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="createDatetime" type="xs:dateTime"></xs:element>
+<xs:element name="deleted" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="editable" type="xs:boolean"></xs:element>
+<xs:element name="id" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="itemDto" type="tns:itemDTOEx"></xs:element>
+<xs:element minOccurs="0" name="itemId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="orderId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="price" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="provisioningRequestId" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="provisioningStatusId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="quantity" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="typeId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="useItem" type="xs:boolean"></xs:element>
+<xs:element minOccurs="0" name="versionNum" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="itemDTOEx">
+<xs:sequence>
+<xs:element minOccurs="0" name="currencyId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="deleted" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="entityId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="hasDecimals" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="number" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="orderLineTypeId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="percentage" type="xs:decimal"></xs:element>
+<xs:element minOccurs="0" name="price" type="xs:decimal"></xs:element>
+<xs:element minOccurs="0" name="priceManual" type="xs:int"></xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="prices" nillable="true" type="tns:itemPriceDTOEx"></xs:element>
+<xs:element minOccurs="0" name="promoCode" type="xs:string"></xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="types" nillable="true" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="itemPriceDTOEx">
+<xs:sequence>
+<xs:element minOccurs="0" name="currencyId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="price" type="xs:decimal"></xs:element>
+<xs:element minOccurs="0" name="priceForm" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="paymentWS">
+<xs:sequence>
+<xs:element minOccurs="0" name="ach" type="tns:achDTO"></xs:element>
+<xs:element minOccurs="0" name="amount" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="attempt" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="authorizationId" type="tns:paymentAuthorizationDTO"></xs:element>
+<xs:element minOccurs="0" name="balance" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="baseUserId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="cheque" type="tns:paymentInfoChequeDTO"></xs:element>
+<xs:element minOccurs="0" name="createDatetime" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="creditCard" type="tns:creditCardDTO"></xs:element>
+<xs:element minOccurs="0" name="currencyId" type="xs:int"></xs:element>
+<xs:element name="deleted" type="xs:int"></xs:element>
+<xs:element name="id" type="xs:int"></xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="invoiceIds" nillable="true" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="isPreauth" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="isRefund" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="method" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="methodId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="paymentDate" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="paymentId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="paymentNotes" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="paymentPeriod" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="resultId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="updateDatetime" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="achDTO">
+<xs:sequence>
+<xs:element minOccurs="0" name="abaRouting" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="accountName" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="accountType" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="bankAccount" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="bankName" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="primaryKey" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="paymentAuthorizationDTO">
+<xs:sequence>
+<xs:element minOccurs="0" name="AVS" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="approvalCode" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="cardCode" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="code1" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="code2" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="code3" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="MD5" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="paymentId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="primaryKey" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="processor" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="responseMessage" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="transactionId" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="paymentInfoChequeDTO">
+<xs:sequence>
+<xs:element minOccurs="0" name="bank" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="date" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="number" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="primaryKey" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="creditCardDTO">
+<xs:sequence>
+<xs:element minOccurs="0" name="deleted" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="expiry" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="gatewayKey" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="name" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="number" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="primaryKey" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="securityCode" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="type" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="paymentAuthorizationDTOEx">
+<xs:complexContent>
+<xs:extension base="tns:paymentAuthorizationDTO">
+<xs:sequence>
+<xs:element minOccurs="0" name="result" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="contactWS">
+<xs:sequence>
+<xs:element minOccurs="0" name="address1" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="address2" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="city" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="countryCode" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime"></xs:element>
+<xs:element name="deleted" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="email" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="faxAreaCode" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="faxCountryCode" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="faxNumber" type="xs:string"></xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="fieldNames" nillable="true" type="xs:string"></xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="fieldValues" nillable="true" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="firstName" type="xs:string"></xs:element>
+<xs:element name="id" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="include" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="initial" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="lastName" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="organizationName" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="phoneAreaCode" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="phoneCountryCode" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="phoneNumber" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="postalCode" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="stateProvince" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="title" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="type" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="userWS">
+<xs:sequence>
+<xs:element minOccurs="0" name="ach" type="tns:achDTO"></xs:element>
+<xs:element minOccurs="0" name="autoRecharge" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="balanceType" type="xs:int"></xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="blacklistMatches" nillable="true" type="xs:string"></xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="childIds" nillable="true" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="contact" type="tns:contactWS"></xs:element>
+<xs:element minOccurs="0" name="createDatetime" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="creditCard" type="tns:creditCardDTO"></xs:element>
+<xs:element minOccurs="0" name="creditLimit" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="currencyId" type="xs:int"></xs:element>
+<xs:element name="deleted" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="dynamicBalance" type="xs:string"></xs:element>
+<xs:element name="failedAttempts" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="invoiceChild" type="xs:boolean"></xs:element>
+<xs:element minOccurs="0" name="isParent" type="xs:boolean"></xs:element>
+<xs:element minOccurs="0" name="language" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="languageId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="lastLogin" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="lastStatusChange" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="mainOrderId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="mainRoleId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="owingBalance" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="parentId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="partnerId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="password" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="role" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="status" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="statusId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="subscriberStatusId" type="xs:int"></xs:element>
+<xs:element name="userId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="userIdBlacklisted" type="xs:boolean"></xs:element>
+<xs:element minOccurs="0" name="userName" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="validatePurchaseWS">
+<xs:sequence>
+<xs:element minOccurs="0" name="authorized" type="xs:boolean"></xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="message" nillable="true" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="quantity" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="success" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="userTransitionResponseWS">
+<xs:sequence>
+<xs:element minOccurs="0" name="fromStatusId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="toStatusId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="transitionDate" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="itemTypeWS">
+<xs:sequence>
+<xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="id" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="orderLineTypeId" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="createResponseWS">
+<xs:sequence>
+<xs:element minOccurs="0" name="invoiceId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="orderId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="paymentId" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="paymentResult" type="tns:paymentAuthorizationDTOEx"></xs:element>
+<xs:element minOccurs="0" name="userId" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="SessionInternalError" type="tns:SessionInternalError"></xs:element>
+<xs:complexType name="SessionInternalError">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:element name="getLatestInvoice" type="tns:getLatestInvoice"></xs:element>
+<xs:complexType name="getLatestInvoice">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getLatestInvoiceResponse" type="tns:getLatestInvoiceResponse"></xs:element>
+<xs:complexType name="getLatestInvoiceResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:invoiceWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="deleteInvoice" type="tns:deleteInvoice"></xs:element>
+<xs:complexType name="deleteInvoice">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="deleteInvoiceResponse" type="tns:deleteInvoiceResponse"></xs:element>
+<xs:complexType name="deleteInvoiceResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:element name="getLatestOrder" type="tns:getLatestOrder"></xs:element>
+<xs:complexType name="getLatestOrder">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getLatestOrderResponse" type="tns:getLatestOrderResponse"></xs:element>
+<xs:complexType name="getLatestOrderResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:orderWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="processPayment" type="tns:processPayment"></xs:element>
+<xs:complexType name="processPayment">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:paymentWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="processPaymentResponse" type="tns:processPaymentResponse"></xs:element>
+<xs:complexType name="processPaymentResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:paymentAuthorizationDTOEx"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="payInvoice" type="tns:payInvoice"></xs:element>
+<xs:complexType name="payInvoice">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="payInvoiceResponse" type="tns:payInvoiceResponse"></xs:element>
+<xs:complexType name="payInvoiceResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:paymentAuthorizationDTOEx"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getLastOrders" type="tns:getLastOrders"></xs:element>
+<xs:complexType name="getLastOrders">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getLastOrdersResponse" type="tns:getLastOrdersResponse"></xs:element>
+<xs:complexType name="getLastOrdersResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateItem" type="tns:updateItem"></xs:element>
+<xs:complexType name="updateItem">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:itemDTOEx"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateItemResponse" type="tns:updateItemResponse"></xs:element>
+<xs:complexType name="updateItemResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:element name="updateUserContact" type="tns:updateUserContact"></xs:element>
+<xs:complexType name="updateUserContact">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg2" type="tns:contactWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateUserContactResponse" type="tns:updateUserContactResponse"></xs:element>
+<xs:complexType name="updateUserContactResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:element name="getUserItemsByCategory" type="tns:getUserItemsByCategory"></xs:element>
+<xs:complexType name="getUserItemsByCategory">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserItemsByCategoryResponse" type="tns:getUserItemsByCategoryResponse"></xs:element>
+<xs:complexType name="getUserItemsByCategoryResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getPayment" type="tns:getPayment"></xs:element>
+<xs:complexType name="getPayment">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getPaymentResponse" type="tns:getPaymentResponse"></xs:element>
+<xs:complexType name="getPaymentResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:paymentWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserWS" type="tns:getUserWS"></xs:element>
+<xs:complexType name="getUserWS">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserWSResponse" type="tns:getUserWSResponse"></xs:element>
+<xs:complexType name="getUserWSResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:userWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="validatePurchase" type="tns:validatePurchase"></xs:element>
+<xs:complexType name="validatePurchase">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg2" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="validatePurchaseResponse" type="tns:validatePurchaseResponse"></xs:element>
+<xs:complexType name="validatePurchaseResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:validatePurchaseWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getLastInvoicesByItemType" type="tns:getLastInvoicesByItemType"></xs:element>
+<xs:complexType name="getLastInvoicesByItemType">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg2" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getLastInvoicesByItemTypeResponse" type="tns:getLastInvoicesByItemTypeResponse"></xs:element>
+<xs:complexType name="getLastInvoicesByItemTypeResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createOrderPreAuthorize" type="tns:createOrderPreAuthorize"></xs:element>
+<xs:complexType name="createOrderPreAuthorize">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:orderWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createOrderPreAuthorizeResponse" type="tns:createOrderPreAuthorizeResponse"></xs:element>
+<xs:complexType name="createOrderPreAuthorizeResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:paymentAuthorizationDTOEx"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createItem" type="tns:createItem"></xs:element>
+<xs:complexType name="createItem">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:itemDTOEx"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createItemResponse" type="tns:createItemResponse"></xs:element>
+<xs:complexType name="createItemResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getCurrentOrder" type="tns:getCurrentOrder"></xs:element>
+<xs:complexType name="getCurrentOrder">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:dateTime"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getCurrentOrderResponse" type="tns:getCurrentOrderResponse"></xs:element>
+<xs:complexType name="getCurrentOrderResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:orderWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="generateRules" type="tns:generateRules"></xs:element>
+<xs:complexType name="generateRules">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="generateRulesResponse" type="tns:generateRulesResponse"></xs:element>
+<xs:complexType name="generateRulesResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:element name="authenticate" type="tns:authenticate"></xs:element>
+<xs:complexType name="authenticate">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="authenticateResponse" type="tns:authenticateResponse"></xs:element>
+<xs:complexType name="authenticateResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUsersNotInStatus" type="tns:getUsersNotInStatus"></xs:element>
+<xs:complexType name="getUsersNotInStatus">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUsersNotInStatusResponse" type="tns:getUsersNotInStatusResponse"></xs:element>
+<xs:complexType name="getUsersNotInStatusResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUsersInStatus" type="tns:getUsersInStatus"></xs:element>
+<xs:complexType name="getUsersInStatus">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUsersInStatusResponse" type="tns:getUsersInStatusResponse"></xs:element>
+<xs:complexType name="getUsersInStatusResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getLastInvoices" type="tns:getLastInvoices"></xs:element>
+<xs:complexType name="getLastInvoices">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getLastInvoicesResponse" type="tns:getLastInvoicesResponse"></xs:element>
+<xs:complexType name="getLastInvoicesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="validateMultiPurchase" type="tns:validateMultiPurchase"></xs:element>
+<xs:complexType name="validateMultiPurchase">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="arg1" type="xs:int"></xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="arg2" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="validateMultiPurchaseResponse" type="tns:validateMultiPurchaseResponse"></xs:element>
+<xs:complexType name="validateMultiPurchaseResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:validatePurchaseWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserId" type="tns:getUserId"></xs:element>
+<xs:complexType name="getUserId">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserIdResponse" type="tns:getUserIdResponse"></xs:element>
+<xs:complexType name="getUserIdResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getItem" type="tns:getItem"></xs:element>
+<xs:complexType name="getItem">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg2" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getItemResponse" type="tns:getItemResponse"></xs:element>
+<xs:complexType name="getItemResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:itemDTOEx"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateUser" type="tns:updateUser"></xs:element>
+<xs:complexType name="updateUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:userWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateUserResponse" type="tns:updateUserResponse"></xs:element>
+<xs:complexType name="updateUserResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:element name="createOrder" type="tns:createOrder"></xs:element>
+<xs:complexType name="createOrder">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:orderWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createOrderResponse" type="tns:createOrderResponse"></xs:element>
+<xs:complexType name="createOrderResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserTransitions" type="tns:getUserTransitions"></xs:element>
+<xs:complexType name="getUserTransitions">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:dateTime"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserTransitionsResponse" type="tns:getUserTransitionsResponse"></xs:element>
+<xs:complexType name="getUserTransitionsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:userTransitionResponseWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createItemCategory" type="tns:createItemCategory"></xs:element>
+<xs:complexType name="createItemCategory">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:itemTypeWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createItemCategoryResponse" type="tns:createItemCategoryResponse"></xs:element>
+<xs:complexType name="createItemCategoryResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="applyPayment" type="tns:applyPayment"></xs:element>
+<xs:complexType name="applyPayment">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:paymentWS"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="applyPaymentResponse" type="tns:applyPaymentResponse"></xs:element>
+<xs:complexType name="applyPaymentResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="setAuthPaymentType" type="tns:setAuthPaymentType"></xs:element>
+<xs:complexType name="setAuthPaymentType">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:int"></xs:element>
+<xs:element name="arg2" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="setAuthPaymentTypeResponse" type="tns:setAuthPaymentTypeResponse"></xs:element>
+<xs:complexType name="setAuthPaymentTypeResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:element name="updateAch" type="tns:updateAch"></xs:element>
+<xs:complexType name="updateAch">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="tns:achDTO"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateAchResponse" type="tns:updateAchResponse"></xs:element>
+<xs:complexType name="updateAchResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:element name="createUser" type="tns:createUser"></xs:element>
+<xs:complexType name="createUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:userWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createUserResponse" type="tns:createUserResponse"></xs:element>
+<xs:complexType name="createUserResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getLastPayments" type="tns:getLastPayments"></xs:element>
+<xs:complexType name="getLastPayments">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getLastPaymentsResponse" type="tns:getLastPaymentsResponse"></xs:element>
+<xs:complexType name="getLastPaymentsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getInvoicesByDate" type="tns:getInvoicesByDate"></xs:element>
+<xs:complexType name="getInvoicesByDate">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getInvoicesByDateResponse" type="tns:getInvoicesByDateResponse"></xs:element>
+<xs:complexType name="getInvoicesByDateResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUsersByCustomField" type="tns:getUsersByCustomField"></xs:element>
+<xs:complexType name="getUsersByCustomField">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUsersByCustomFieldResponse" type="tns:getUsersByCustomFieldResponse"></xs:element>
+<xs:complexType name="getUsersByCustomFieldResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getAllItemCategories" type="tns:getAllItemCategories"></xs:element>
+<xs:complexType name="getAllItemCategories">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:element name="getAllItemCategoriesResponse" type="tns:getAllItemCategoriesResponse"></xs:element>
+<xs:complexType name="getAllItemCategoriesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:itemTypeWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="deleteUser" type="tns:deleteUser"></xs:element>
+<xs:complexType name="deleteUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="deleteUserResponse" type="tns:deleteUserResponse"></xs:element>
+<xs:complexType name="deleteUserResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:element name="isUserSubscribedTo" type="tns:isUserSubscribedTo"></xs:element>
+<xs:complexType name="isUserSubscribedTo">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="isUserSubscribedToResponse" type="tns:isUserSubscribedToResponse"></xs:element>
+<xs:complexType name="isUserSubscribedToResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:decimal"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getLatestPayment" type="tns:getLatestPayment"></xs:element>
+<xs:complexType name="getLatestPayment">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getLatestPaymentResponse" type="tns:getLatestPaymentResponse"></xs:element>
+<xs:complexType name="getLatestPaymentResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:paymentWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateOrderLine" type="tns:updateOrderLine"></xs:element>
+<xs:complexType name="updateOrderLine">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:orderLineWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateOrderLineResponse" type="tns:updateOrderLineResponse"></xs:element>
+<xs:complexType name="updateOrderLineResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:element name="rateOrders" type="tns:rateOrders"></xs:element>
+<xs:complexType name="rateOrders">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="arg0" type="tns:orderWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="rateOrdersResponse" type="tns:rateOrdersResponse"></xs:element>
+<xs:complexType name="rateOrdersResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:orderWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="deleteOrder" type="tns:deleteOrder"></xs:element>
+<xs:complexType name="deleteOrder">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="deleteOrderResponse" type="tns:deleteOrderResponse"></xs:element>
+<xs:complexType name="deleteOrderResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:element name="getUserTransitionsAfterId" type="tns:getUserTransitionsAfterId"></xs:element>
+<xs:complexType name="getUserTransitionsAfterId">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserTransitionsAfterIdResponse" type="tns:getUserTransitionsAfterIdResponse"></xs:element>
+<xs:complexType name="getUserTransitionsAfterIdResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:userTransitionResponseWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createInvoice" type="tns:createInvoice"></xs:element>
+<xs:complexType name="createInvoice">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element name="arg1" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createInvoiceResponse" type="tns:createInvoiceResponse"></xs:element>
+<xs:complexType name="createInvoiceResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="create" type="tns:create"></xs:element>
+<xs:complexType name="create">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:userWS"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="tns:orderWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createResponse" type="tns:createResponse"></xs:element>
+<xs:complexType name="createResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:createResponseWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getOrder" type="tns:getOrder"></xs:element>
+<xs:complexType name="getOrder">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getOrderResponse" type="tns:getOrderResponse"></xs:element>
+<xs:complexType name="getOrderResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:orderWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createOrderAndInvoice" type="tns:createOrderAndInvoice"></xs:element>
+<xs:complexType name="createOrderAndInvoice">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:orderWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createOrderAndInvoiceResponse" type="tns:createOrderAndInvoiceResponse"></xs:element>
+<xs:complexType name="createOrderAndInvoiceResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateOrder" type="tns:updateOrder"></xs:element>
+<xs:complexType name="updateOrder">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:orderWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateOrderResponse" type="tns:updateOrderResponse"></xs:element>
+<xs:complexType name="updateOrderResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:element name="getLatestOrderByItemType" type="tns:getLatestOrderByItemType"></xs:element>
+<xs:complexType name="getLatestOrderByItemType">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getLatestOrderByItemTypeResponse" type="tns:getLatestOrderByItemTypeResponse"></xs:element>
+<xs:complexType name="getLatestOrderByItemTypeResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:orderWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getOrderByPeriod" type="tns:getOrderByPeriod"></xs:element>
+<xs:complexType name="getOrderByPeriod">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getOrderByPeriodResponse" type="tns:getOrderByPeriodResponse"></xs:element>
+<xs:complexType name="getOrderByPeriodResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateItemCategory" type="tns:updateItemCategory"></xs:element>
+<xs:complexType name="updateItemCategory">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:itemTypeWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateItemCategoryResponse" type="tns:updateItemCategoryResponse"></xs:element>
+<xs:complexType name="updateItemCategoryResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:element name="updateCurrentOrder" type="tns:updateCurrentOrder"></xs:element>
+<xs:complexType name="updateCurrentOrder">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="arg1" type="tns:orderLineWS"></xs:element>
+<xs:element minOccurs="0" name="arg2" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="arg3" type="xs:dateTime"></xs:element>
+<xs:element minOccurs="0" name="arg4" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateCurrentOrderResponse" type="tns:updateCurrentOrderResponse"></xs:element>
+<xs:complexType name="updateCurrentOrderResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:orderWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getOrderLine" type="tns:getOrderLine"></xs:element>
+<xs:complexType name="getOrderLine">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getOrderLineResponse" type="tns:getOrderLineResponse"></xs:element>
+<xs:complexType name="getOrderLineResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:orderLineWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getLastOrdersByItemType" type="tns:getLastOrdersByItemType"></xs:element>
+<xs:complexType name="getLastOrdersByItemType">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg2" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getLastOrdersByItemTypeResponse" type="tns:getLastOrdersByItemTypeResponse"></xs:element>
+<xs:complexType name="getLastOrdersByItemTypeResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getAuthPaymentType" type="tns:getAuthPaymentType"></xs:element>
+<xs:complexType name="getAuthPaymentType">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getAuthPaymentTypeResponse" type="tns:getAuthPaymentTypeResponse"></xs:element>
+<xs:complexType name="getAuthPaymentTypeResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getAllItems" type="tns:getAllItems"></xs:element>
+<xs:complexType name="getAllItems">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:element name="getAllItemsResponse" type="tns:getAllItemsResponse"></xs:element>
+<xs:complexType name="getAllItemsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:itemDTOEx"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateCreditCard" type="tns:updateCreditCard"></xs:element>
+<xs:complexType name="updateCreditCard">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="tns:creditCardDTO"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateCreditCardResponse" type="tns:updateCreditCardResponse"></xs:element>
+<xs:complexType name="updateCreditCardResponse">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+<xs:element name="getUsersByStatus" type="tns:getUsersByStatus"></xs:element>
+<xs:complexType name="getUsersByStatus">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:int"></xs:element>
+<xs:element name="arg2" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUsersByStatusResponse" type="tns:getUsersByStatusResponse"></xs:element>
+<xs:complexType name="getUsersByStatusResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getLatestInvoiceByItemType" type="tns:getLatestInvoiceByItemType"></xs:element>
+<xs:complexType name="getLatestInvoiceByItemType">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getLatestInvoiceByItemTypeResponse" type="tns:getLatestInvoiceByItemTypeResponse"></xs:element>
+<xs:complexType name="getLatestInvoiceByItemTypeResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:invoiceWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="rateOrder" type="tns:rateOrder"></xs:element>
+<xs:complexType name="rateOrder">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:orderWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="rateOrderResponse" type="tns:rateOrderResponse"></xs:element>
+<xs:complexType name="rateOrderResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:orderWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getItemByCategory" type="tns:getItemByCategory"></xs:element>
+<xs:complexType name="getItemByCategory">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getItemByCategoryResponse" type="tns:getItemByCategoryResponse"></xs:element>
+<xs:complexType name="getItemByCategoryResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:itemDTOEx"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUsersByCreditCard" type="tns:getUsersByCreditCard"></xs:element>
+<xs:complexType name="getUsersByCreditCard">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUsersByCreditCardResponse" type="tns:getUsersByCreditCardResponse"></xs:element>
+<xs:complexType name="getUsersByCreditCardResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserContactsWS" type="tns:getUserContactsWS"></xs:element>
+<xs:complexType name="getUserContactsWS">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserContactsWSResponse" type="tns:getUserContactsWSResponse"></xs:element>
+<xs:complexType name="getUserContactsWSResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:contactWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getInvoiceWS" type="tns:getInvoiceWS"></xs:element>
+<xs:complexType name="getInvoiceWS">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getInvoiceWSResponse" type="tns:getInvoiceWSResponse"></xs:element>
+<xs:complexType name="getInvoiceWSResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:invoiceWS"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserInvoicesByDate" type="tns:getUserInvoicesByDate"></xs:element>
+<xs:complexType name="getUserInvoicesByDate">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:int"></xs:element>
+<xs:element minOccurs="0" name="arg1" type="xs:string"></xs:element>
+<xs:element minOccurs="0" name="arg2" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserInvoicesByDateResponse" type="tns:getUserInvoicesByDateResponse"></xs:element>
+<xs:complexType name="getUserInvoicesByDateResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="updateCreditCard">
+    <wsdl:part element="tns:updateCreditCard" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserTransitionsAfterIdResponse">
+    <wsdl:part element="tns:getUserTransitionsAfterIdResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="payInvoiceResponse">
+    <wsdl:part element="tns:payInvoiceResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validateMultiPurchase">
+    <wsdl:part element="tns:validateMultiPurchase" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAuthPaymentTypeResponse">
+    <wsdl:part element="tns:getAuthPaymentTypeResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteOrder">
+    <wsdl:part element="tns:deleteOrder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLastInvoicesByItemTypeResponse">
+    <wsdl:part element="tns:getLastInvoicesByItemTypeResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLatestOrderByItemTypeResponse">
+    <wsdl:part element="tns:getLatestOrderByItemTypeResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInvoiceWSResponse">
+    <wsdl:part element="tns:getInvoiceWSResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersByCustomFieldResponse">
+    <wsdl:part element="tns:getUsersByCustomFieldResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersByCustomField">
+    <wsdl:part element="tns:getUsersByCustomField" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLastOrdersByItemType">
+    <wsdl:part element="tns:getLastOrdersByItemType" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateItemCategoryResponse">
+    <wsdl:part element="tns:updateItemCategoryResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateUserContactResponse">
+    <wsdl:part element="tns:updateUserContactResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authenticate">
+    <wsdl:part element="tns:authenticate" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserItemsByCategory">
+    <wsdl:part element="tns:getUserItemsByCategory" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getItem">
+    <wsdl:part element="tns:getItem" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserTransitionsAfterId">
+    <wsdl:part element="tns:getUserTransitionsAfterId" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getItemByCategory">
+    <wsdl:part element="tns:getItemByCategory" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteInvoice">
+    <wsdl:part element="tns:deleteInvoice" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersInStatus">
+    <wsdl:part element="tns:getUsersInStatus" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteInvoiceResponse">
+    <wsdl:part element="tns:deleteInvoiceResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLatestInvoiceByItemType">
+    <wsdl:part element="tns:getLatestInvoiceByItemType" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLastInvoices">
+    <wsdl:part element="tns:getLastInvoices" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLastPaymentsResponse">
+    <wsdl:part element="tns:getLastPaymentsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateCreditCardResponse">
+    <wsdl:part element="tns:updateCreditCardResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateUserContact">
+    <wsdl:part element="tns:updateUserContact" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLatestPaymentResponse">
+    <wsdl:part element="tns:getLatestPaymentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createItemCategory">
+    <wsdl:part element="tns:createItemCategory" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authenticateResponse">
+    <wsdl:part element="tns:authenticateResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLastPayments">
+    <wsdl:part element="tns:getLastPayments" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createOrderAndInvoiceResponse">
+    <wsdl:part element="tns:createOrderAndInvoiceResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrderByPeriod">
+    <wsdl:part element="tns:getOrderByPeriod" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createInvoiceResponse">
+    <wsdl:part element="tns:createInvoiceResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createItem">
+    <wsdl:part element="tns:createItem" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateOrderLine">
+    <wsdl:part element="tns:updateOrderLine" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isUserSubscribedToResponse">
+    <wsdl:part element="tns:isUserSubscribedToResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="applyPaymentResponse">
+    <wsdl:part element="tns:applyPaymentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInvoiceWS">
+    <wsdl:part element="tns:getInvoiceWS" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SessionInternalError">
+    <wsdl:part element="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserId">
+    <wsdl:part element="tns:getUserId" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCurrentOrder">
+    <wsdl:part element="tns:getCurrentOrder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserTransitionsResponse">
+    <wsdl:part element="tns:getUserTransitionsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getItemByCategoryResponse">
+    <wsdl:part element="tns:getItemByCategoryResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateOrderResponse">
+    <wsdl:part element="tns:updateOrderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserTransitions">
+    <wsdl:part element="tns:getUserTransitions" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createResponse">
+    <wsdl:part element="tns:createResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrderLineResponse">
+    <wsdl:part element="tns:getOrderLineResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLatestOrderResponse">
+    <wsdl:part element="tns:getLatestOrderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isUserSubscribedTo">
+    <wsdl:part element="tns:isUserSubscribedTo" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createOrderResponse">
+    <wsdl:part element="tns:createOrderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPayment">
+    <wsdl:part element="tns:getPayment" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserWSResponse">
+    <wsdl:part element="tns:getUserWSResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rateOrder">
+    <wsdl:part element="tns:rateOrder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrder">
+    <wsdl:part element="tns:getOrder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createOrder">
+    <wsdl:part element="tns:createOrder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getItemResponse">
+    <wsdl:part element="tns:getItemResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllItemsResponse">
+    <wsdl:part element="tns:getAllItemsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validatePurchase">
+    <wsdl:part element="tns:validatePurchase" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateOrderLineResponse">
+    <wsdl:part element="tns:updateOrderLineResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteUser">
+    <wsdl:part element="tns:deleteUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateUser">
+    <wsdl:part element="tns:updateUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInvoicesByDateResponse">
+    <wsdl:part element="tns:getInvoicesByDateResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createUser">
+    <wsdl:part element="tns:createUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInvoicesByDate">
+    <wsdl:part element="tns:getInvoicesByDate" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLastOrdersByItemTypeResponse">
+    <wsdl:part element="tns:getLastOrdersByItemTypeResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createItemResponse">
+    <wsdl:part element="tns:createItemResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserIdResponse">
+    <wsdl:part element="tns:getUserIdResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLatestPayment">
+    <wsdl:part element="tns:getLatestPayment" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validateMultiPurchaseResponse">
+    <wsdl:part element="tns:validateMultiPurchaseResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLatestInvoiceResponse">
+    <wsdl:part element="tns:getLatestInvoiceResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCurrentOrderResponse">
+    <wsdl:part element="tns:getCurrentOrderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteOrderResponse">
+    <wsdl:part element="tns:deleteOrderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rateOrderResponse">
+    <wsdl:part element="tns:rateOrderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateAch">
+    <wsdl:part element="tns:updateAch" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setAuthPaymentType">
+    <wsdl:part element="tns:setAuthPaymentType" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createInvoice">
+    <wsdl:part element="tns:createInvoice" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateCurrentOrder">
+    <wsdl:part element="tns:updateCurrentOrder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLastInvoicesByItemType">
+    <wsdl:part element="tns:getLastInvoicesByItemType" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserWS">
+    <wsdl:part element="tns:getUserWS" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="applyPayment">
+    <wsdl:part element="tns:applyPayment" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersByStatus">
+    <wsdl:part element="tns:getUsersByStatus" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLastInvoicesResponse">
+    <wsdl:part element="tns:getLastInvoicesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersByCreditCardResponse">
+    <wsdl:part element="tns:getUsersByCreditCardResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validatePurchaseResponse">
+    <wsdl:part element="tns:validatePurchaseResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserContactsWS">
+    <wsdl:part element="tns:getUserContactsWS" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllItems">
+    <wsdl:part element="tns:getAllItems" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteUserResponse">
+    <wsdl:part element="tns:deleteUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserInvoicesByDate">
+    <wsdl:part element="tns:getUserInvoicesByDate" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllItemCategories">
+    <wsdl:part element="tns:getAllItemCategories" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLastOrdersResponse">
+    <wsdl:part element="tns:getLastOrdersResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserItemsByCategoryResponse">
+    <wsdl:part element="tns:getUserItemsByCategoryResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserInvoicesByDateResponse">
+    <wsdl:part element="tns:getUserInvoicesByDateResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateCurrentOrderResponse">
+    <wsdl:part element="tns:updateCurrentOrderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersInStatusResponse">
+    <wsdl:part element="tns:getUsersInStatusResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLatestOrder">
+    <wsdl:part element="tns:getLatestOrder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLastOrders">
+    <wsdl:part element="tns:getLastOrders" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateAchResponse">
+    <wsdl:part element="tns:updateAchResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserContactsWSResponse">
+    <wsdl:part element="tns:getUserContactsWSResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateUserResponse">
+    <wsdl:part element="tns:updateUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createOrderPreAuthorize">
+    <wsdl:part element="tns:createOrderPreAuthorize" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createUserResponse">
+    <wsdl:part element="tns:createUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLatestInvoice">
+    <wsdl:part element="tns:getLatestInvoice" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateItem">
+    <wsdl:part element="tns:updateItem" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="processPaymentResponse">
+    <wsdl:part element="tns:processPaymentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLatestInvoiceByItemTypeResponse">
+    <wsdl:part element="tns:getLatestInvoiceByItemTypeResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersNotInStatus">
+    <wsdl:part element="tns:getUsersNotInStatus" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="processPayment">
+    <wsdl:part element="tns:processPayment" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersByCreditCard">
+    <wsdl:part element="tns:getUsersByCreditCard" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrderByPeriodResponse">
+    <wsdl:part element="tns:getOrderByPeriodResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generateRulesResponse">
+    <wsdl:part element="tns:generateRulesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPaymentResponse">
+    <wsdl:part element="tns:getPaymentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createItemCategoryResponse">
+    <wsdl:part element="tns:createItemCategoryResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rateOrders">
+    <wsdl:part element="tns:rateOrders" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateItemCategory">
+    <wsdl:part element="tns:updateItemCategory" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAuthPaymentType">
+    <wsdl:part element="tns:getAuthPaymentType" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="create">
+    <wsdl:part element="tns:create" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersByStatusResponse">
+    <wsdl:part element="tns:getUsersByStatusResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLatestOrderByItemType">
+    <wsdl:part element="tns:getLatestOrderByItemType" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateItemResponse">
+    <wsdl:part element="tns:updateItemResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setAuthPaymentTypeResponse">
+    <wsdl:part element="tns:setAuthPaymentTypeResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateOrder">
+    <wsdl:part element="tns:updateOrder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rateOrdersResponse">
+    <wsdl:part element="tns:rateOrdersResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generateRules">
+    <wsdl:part element="tns:generateRules" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createOrderPreAuthorizeResponse">
+    <wsdl:part element="tns:createOrderPreAuthorizeResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="payInvoice">
+    <wsdl:part element="tns:payInvoice" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllItemCategoriesResponse">
+    <wsdl:part element="tns:getAllItemCategoriesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrderResponse">
+    <wsdl:part element="tns:getOrderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersNotInStatusResponse">
+    <wsdl:part element="tns:getUsersNotInStatusResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrderLine">
+    <wsdl:part element="tns:getOrderLine" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createOrderAndInvoice">
+    <wsdl:part element="tns:createOrderAndInvoice" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IWebServicesSessionBean">
+    <wsdl:operation name="getLatestInvoice">
+      <wsdl:input message="tns:getLatestInvoice" name="getLatestInvoice">
+    </wsdl:input>
+      <wsdl:output message="tns:getLatestInvoiceResponse" name="getLatestInvoiceResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteInvoice">
+      <wsdl:input message="tns:deleteInvoice" name="deleteInvoice">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteInvoiceResponse" name="deleteInvoiceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLatestOrder">
+      <wsdl:input message="tns:getLatestOrder" name="getLatestOrder">
+    </wsdl:input>
+      <wsdl:output message="tns:getLatestOrderResponse" name="getLatestOrderResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="processPayment">
+      <wsdl:input message="tns:processPayment" name="processPayment">
+    </wsdl:input>
+      <wsdl:output message="tns:processPaymentResponse" name="processPaymentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="payInvoice">
+      <wsdl:input message="tns:payInvoice" name="payInvoice">
+    </wsdl:input>
+      <wsdl:output message="tns:payInvoiceResponse" name="payInvoiceResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLastOrders">
+      <wsdl:input message="tns:getLastOrders" name="getLastOrders">
+    </wsdl:input>
+      <wsdl:output message="tns:getLastOrdersResponse" name="getLastOrdersResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateItem">
+      <wsdl:input message="tns:updateItem" name="updateItem">
+    </wsdl:input>
+      <wsdl:output message="tns:updateItemResponse" name="updateItemResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateUserContact">
+      <wsdl:input message="tns:updateUserContact" name="updateUserContact">
+    </wsdl:input>
+      <wsdl:output message="tns:updateUserContactResponse" name="updateUserContactResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserItemsByCategory">
+      <wsdl:input message="tns:getUserItemsByCategory" name="getUserItemsByCategory">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserItemsByCategoryResponse" name="getUserItemsByCategoryResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPayment">
+      <wsdl:input message="tns:getPayment" name="getPayment">
+    </wsdl:input>
+      <wsdl:output message="tns:getPaymentResponse" name="getPaymentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserWS">
+      <wsdl:input message="tns:getUserWS" name="getUserWS">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserWSResponse" name="getUserWSResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="validatePurchase">
+      <wsdl:input message="tns:validatePurchase" name="validatePurchase">
+    </wsdl:input>
+      <wsdl:output message="tns:validatePurchaseResponse" name="validatePurchaseResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLastInvoicesByItemType">
+      <wsdl:input message="tns:getLastInvoicesByItemType" name="getLastInvoicesByItemType">
+    </wsdl:input>
+      <wsdl:output message="tns:getLastInvoicesByItemTypeResponse" name="getLastInvoicesByItemTypeResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createOrderPreAuthorize">
+      <wsdl:input message="tns:createOrderPreAuthorize" name="createOrderPreAuthorize">
+    </wsdl:input>
+      <wsdl:output message="tns:createOrderPreAuthorizeResponse" name="createOrderPreAuthorizeResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createItem">
+      <wsdl:input message="tns:createItem" name="createItem">
+    </wsdl:input>
+      <wsdl:output message="tns:createItemResponse" name="createItemResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getCurrentOrder">
+      <wsdl:input message="tns:getCurrentOrder" name="getCurrentOrder">
+    </wsdl:input>
+      <wsdl:output message="tns:getCurrentOrderResponse" name="getCurrentOrderResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generateRules">
+      <wsdl:input message="tns:generateRules" name="generateRules">
+    </wsdl:input>
+      <wsdl:output message="tns:generateRulesResponse" name="generateRulesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="authenticate">
+      <wsdl:input message="tns:authenticate" name="authenticate">
+    </wsdl:input>
+      <wsdl:output message="tns:authenticateResponse" name="authenticateResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUsersNotInStatus">
+      <wsdl:input message="tns:getUsersNotInStatus" name="getUsersNotInStatus">
+    </wsdl:input>
+      <wsdl:output message="tns:getUsersNotInStatusResponse" name="getUsersNotInStatusResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUsersInStatus">
+      <wsdl:input message="tns:getUsersInStatus" name="getUsersInStatus">
+    </wsdl:input>
+      <wsdl:output message="tns:getUsersInStatusResponse" name="getUsersInStatusResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLastInvoices">
+      <wsdl:input message="tns:getLastInvoices" name="getLastInvoices">
+    </wsdl:input>
+      <wsdl:output message="tns:getLastInvoicesResponse" name="getLastInvoicesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="validateMultiPurchase">
+      <wsdl:input message="tns:validateMultiPurchase" name="validateMultiPurchase">
+    </wsdl:input>
+      <wsdl:output message="tns:validateMultiPurchaseResponse" name="validateMultiPurchaseResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserId">
+      <wsdl:input message="tns:getUserId" name="getUserId">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserIdResponse" name="getUserIdResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getItem">
+      <wsdl:input message="tns:getItem" name="getItem">
+    </wsdl:input>
+      <wsdl:output message="tns:getItemResponse" name="getItemResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateUser">
+      <wsdl:input message="tns:updateUser" name="updateUser">
+    </wsdl:input>
+      <wsdl:output message="tns:updateUserResponse" name="updateUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createOrder">
+      <wsdl:input message="tns:createOrder" name="createOrder">
+    </wsdl:input>
+      <wsdl:output message="tns:createOrderResponse" name="createOrderResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserTransitions">
+      <wsdl:input message="tns:getUserTransitions" name="getUserTransitions">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserTransitionsResponse" name="getUserTransitionsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createItemCategory">
+      <wsdl:input message="tns:createItemCategory" name="createItemCategory">
+    </wsdl:input>
+      <wsdl:output message="tns:createItemCategoryResponse" name="createItemCategoryResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="applyPayment">
+      <wsdl:input message="tns:applyPayment" name="applyPayment">
+    </wsdl:input>
+      <wsdl:output message="tns:applyPaymentResponse" name="applyPaymentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setAuthPaymentType">
+      <wsdl:input message="tns:setAuthPaymentType" name="setAuthPaymentType">
+    </wsdl:input>
+      <wsdl:output message="tns:setAuthPaymentTypeResponse" name="setAuthPaymentTypeResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateAch">
+      <wsdl:input message="tns:updateAch" name="updateAch">
+    </wsdl:input>
+      <wsdl:output message="tns:updateAchResponse" name="updateAchResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createUser">
+      <wsdl:input message="tns:createUser" name="createUser">
+    </wsdl:input>
+      <wsdl:output message="tns:createUserResponse" name="createUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLastPayments">
+      <wsdl:input message="tns:getLastPayments" name="getLastPayments">
+    </wsdl:input>
+      <wsdl:output message="tns:getLastPaymentsResponse" name="getLastPaymentsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getInvoicesByDate">
+      <wsdl:input message="tns:getInvoicesByDate" name="getInvoicesByDate">
+    </wsdl:input>
+      <wsdl:output message="tns:getInvoicesByDateResponse" name="getInvoicesByDateResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUsersByCustomField">
+      <wsdl:input message="tns:getUsersByCustomField" name="getUsersByCustomField">
+    </wsdl:input>
+      <wsdl:output message="tns:getUsersByCustomFieldResponse" name="getUsersByCustomFieldResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllItemCategories">
+      <wsdl:input message="tns:getAllItemCategories" name="getAllItemCategories">
+    </wsdl:input>
+      <wsdl:output message="tns:getAllItemCategoriesResponse" name="getAllItemCategoriesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUser">
+      <wsdl:input message="tns:deleteUser" name="deleteUser">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteUserResponse" name="deleteUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isUserSubscribedTo">
+      <wsdl:input message="tns:isUserSubscribedTo" name="isUserSubscribedTo">
+    </wsdl:input>
+      <wsdl:output message="tns:isUserSubscribedToResponse" name="isUserSubscribedToResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLatestPayment">
+      <wsdl:input message="tns:getLatestPayment" name="getLatestPayment">
+    </wsdl:input>
+      <wsdl:output message="tns:getLatestPaymentResponse" name="getLatestPaymentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateOrderLine">
+      <wsdl:input message="tns:updateOrderLine" name="updateOrderLine">
+    </wsdl:input>
+      <wsdl:output message="tns:updateOrderLineResponse" name="updateOrderLineResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="rateOrders">
+      <wsdl:input message="tns:rateOrders" name="rateOrders">
+    </wsdl:input>
+      <wsdl:output message="tns:rateOrdersResponse" name="rateOrdersResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteOrder">
+      <wsdl:input message="tns:deleteOrder" name="deleteOrder">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteOrderResponse" name="deleteOrderResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserTransitionsAfterId">
+      <wsdl:input message="tns:getUserTransitionsAfterId" name="getUserTransitionsAfterId">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserTransitionsAfterIdResponse" name="getUserTransitionsAfterIdResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createInvoice">
+      <wsdl:input message="tns:createInvoice" name="createInvoice">
+    </wsdl:input>
+      <wsdl:output message="tns:createInvoiceResponse" name="createInvoiceResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <wsdl:input message="tns:create" name="create">
+    </wsdl:input>
+      <wsdl:output message="tns:createResponse" name="createResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getOrder">
+      <wsdl:input message="tns:getOrder" name="getOrder">
+    </wsdl:input>
+      <wsdl:output message="tns:getOrderResponse" name="getOrderResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createOrderAndInvoice">
+      <wsdl:input message="tns:createOrderAndInvoice" name="createOrderAndInvoice">
+    </wsdl:input>
+      <wsdl:output message="tns:createOrderAndInvoiceResponse" name="createOrderAndInvoiceResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateOrder">
+      <wsdl:input message="tns:updateOrder" name="updateOrder">
+    </wsdl:input>
+      <wsdl:output message="tns:updateOrderResponse" name="updateOrderResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLatestOrderByItemType">
+      <wsdl:input message="tns:getLatestOrderByItemType" name="getLatestOrderByItemType">
+    </wsdl:input>
+      <wsdl:output message="tns:getLatestOrderByItemTypeResponse" name="getLatestOrderByItemTypeResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getOrderByPeriod">
+      <wsdl:input message="tns:getOrderByPeriod" name="getOrderByPeriod">
+    </wsdl:input>
+      <wsdl:output message="tns:getOrderByPeriodResponse" name="getOrderByPeriodResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateItemCategory">
+      <wsdl:input message="tns:updateItemCategory" name="updateItemCategory">
+    </wsdl:input>
+      <wsdl:output message="tns:updateItemCategoryResponse" name="updateItemCategoryResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateCurrentOrder">
+      <wsdl:input message="tns:updateCurrentOrder" name="updateCurrentOrder">
+    </wsdl:input>
+      <wsdl:output message="tns:updateCurrentOrderResponse" name="updateCurrentOrderResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getOrderLine">
+      <wsdl:input message="tns:getOrderLine" name="getOrderLine">
+    </wsdl:input>
+      <wsdl:output message="tns:getOrderLineResponse" name="getOrderLineResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLastOrdersByItemType">
+      <wsdl:input message="tns:getLastOrdersByItemType" name="getLastOrdersByItemType">
+    </wsdl:input>
+      <wsdl:output message="tns:getLastOrdersByItemTypeResponse" name="getLastOrdersByItemTypeResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAuthPaymentType">
+      <wsdl:input message="tns:getAuthPaymentType" name="getAuthPaymentType">
+    </wsdl:input>
+      <wsdl:output message="tns:getAuthPaymentTypeResponse" name="getAuthPaymentTypeResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllItems">
+      <wsdl:input message="tns:getAllItems" name="getAllItems">
+    </wsdl:input>
+      <wsdl:output message="tns:getAllItemsResponse" name="getAllItemsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateCreditCard">
+      <wsdl:input message="tns:updateCreditCard" name="updateCreditCard">
+    </wsdl:input>
+      <wsdl:output message="tns:updateCreditCardResponse" name="updateCreditCardResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUsersByStatus">
+      <wsdl:input message="tns:getUsersByStatus" name="getUsersByStatus">
+    </wsdl:input>
+      <wsdl:output message="tns:getUsersByStatusResponse" name="getUsersByStatusResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLatestInvoiceByItemType">
+      <wsdl:input message="tns:getLatestInvoiceByItemType" name="getLatestInvoiceByItemType">
+    </wsdl:input>
+      <wsdl:output message="tns:getLatestInvoiceByItemTypeResponse" name="getLatestInvoiceByItemTypeResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="rateOrder">
+      <wsdl:input message="tns:rateOrder" name="rateOrder">
+    </wsdl:input>
+      <wsdl:output message="tns:rateOrderResponse" name="rateOrderResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getItemByCategory">
+      <wsdl:input message="tns:getItemByCategory" name="getItemByCategory">
+    </wsdl:input>
+      <wsdl:output message="tns:getItemByCategoryResponse" name="getItemByCategoryResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsersByCreditCard">
+      <wsdl:input message="tns:getUsersByCreditCard" name="getUsersByCreditCard">
+    </wsdl:input>
+      <wsdl:output message="tns:getUsersByCreditCardResponse" name="getUsersByCreditCardResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserContactsWS">
+      <wsdl:input message="tns:getUserContactsWS" name="getUserContactsWS">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserContactsWSResponse" name="getUserContactsWSResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getInvoiceWS">
+      <wsdl:input message="tns:getInvoiceWS" name="getInvoiceWS">
+    </wsdl:input>
+      <wsdl:output message="tns:getInvoiceWSResponse" name="getInvoiceWSResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserInvoicesByDate">
+      <wsdl:input message="tns:getUserInvoicesByDate" name="getUserInvoicesByDate">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserInvoicesByDateResponse" name="getUserInvoicesByDateResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SessionInternalError" name="SessionInternalError">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServicesSessionSpringBeanServiceSoapBinding" type="tns:IWebServicesSessionBean">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="getLatestInvoice">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getLatestInvoice">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getLatestInvoiceResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteInvoice">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="deleteInvoice">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="deleteInvoiceResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLatestOrder">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getLatestOrder">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getLatestOrderResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="processPayment">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="processPayment">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="processPaymentResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLastOrders">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getLastOrders">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getLastOrdersResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="payInvoice">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="payInvoice">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="payInvoiceResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateItem">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="updateItem">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="updateItemResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateUserContact">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="updateUserContact">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="updateUserContactResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserItemsByCategory">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getUserItemsByCategory">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getUserItemsByCategoryResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPayment">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getPayment">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getPaymentResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserWS">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getUserWS">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getUserWSResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="validatePurchase">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="validatePurchase">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="validatePurchaseResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLastInvoicesByItemType">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getLastInvoicesByItemType">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getLastInvoicesByItemTypeResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createOrderPreAuthorize">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="createOrderPreAuthorize">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="createOrderPreAuthorizeResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createItem">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="createItem">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="createItemResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generateRules">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="generateRules">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="generateRulesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getCurrentOrder">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getCurrentOrder">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getCurrentOrderResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="authenticate">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="authenticate">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="authenticateResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUsersNotInStatus">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getUsersNotInStatus">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getUsersNotInStatusResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUsersInStatus">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getUsersInStatus">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getUsersInStatusResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLastInvoices">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getLastInvoices">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getLastInvoicesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserId">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getUserId">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getUserIdResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="validateMultiPurchase">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="validateMultiPurchase">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="validateMultiPurchaseResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getItem">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getItem">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getItemResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createOrder">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="createOrder">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="createOrderResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateUser">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="updateUser">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="updateUserResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserTransitions">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getUserTransitions">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getUserTransitionsResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="applyPayment">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="applyPayment">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="applyPaymentResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createItemCategory">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="createItemCategory">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="createItemCategoryResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setAuthPaymentType">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="setAuthPaymentType">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="setAuthPaymentTypeResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createUser">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="createUser">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="createUserResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateAch">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="updateAch">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="updateAchResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLastPayments">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getLastPayments">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getLastPaymentsResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getInvoicesByDate">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getInvoicesByDate">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getInvoicesByDateResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllItemCategories">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getAllItemCategories">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getAllItemCategoriesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsersByCustomField">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getUsersByCustomField">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getUsersByCustomFieldResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUser">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="deleteUser">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="deleteUserResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLatestPayment">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getLatestPayment">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getLatestPaymentResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isUserSubscribedTo">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="isUserSubscribedTo">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="isUserSubscribedToResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateOrderLine">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="updateOrderLine">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="updateOrderLineResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteOrder">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="deleteOrder">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="deleteOrderResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="rateOrders">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="rateOrders">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="rateOrdersResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createInvoice">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="createInvoice">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="createInvoiceResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserTransitionsAfterId">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getUserTransitionsAfterId">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getUserTransitionsAfterIdResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="create">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="createResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createOrderAndInvoice">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="createOrderAndInvoice">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="createOrderAndInvoiceResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getOrder">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getOrder">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getOrderResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateOrder">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="updateOrder">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="updateOrderResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLatestOrderByItemType">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getLatestOrderByItemType">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getLatestOrderByItemTypeResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getOrderByPeriod">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getOrderByPeriod">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getOrderByPeriodResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateItemCategory">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="updateItemCategory">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="updateItemCategoryResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateCurrentOrder">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="updateCurrentOrder">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="updateCurrentOrderResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getOrderLine">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getOrderLine">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getOrderLineResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLastOrdersByItemType">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getLastOrdersByItemType">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getLastOrdersByItemTypeResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllItems">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getAllItems">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getAllItemsResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAuthPaymentType">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getAuthPaymentType">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getAuthPaymentTypeResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUsersByStatus">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getUsersByStatus">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getUsersByStatusResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateCreditCard">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="updateCreditCard">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="updateCreditCardResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLatestInvoiceByItemType">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getLatestInvoiceByItemType">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getLatestInvoiceByItemTypeResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="rateOrder">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="rateOrder">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="rateOrderResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getItemByCategory">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getItemByCategory">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getItemByCategoryResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInvoiceWS">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getInvoiceWS">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getInvoiceWSResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserContactsWS">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getUserContactsWS">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getUserContactsWSResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUsersByCreditCard">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getUsersByCreditCard">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getUsersByCreditCardResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserInvoicesByDate">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getUserInvoicesByDate">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getUserInvoicesByDateResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="SessionInternalError">
+        <soap:fault name="SessionInternalError" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebServicesSessionSpringBeanService">
+    <wsdl:port binding="tns:WebServicesSessionSpringBeanServiceSoapBinding" name="WebServicesSessionSpringBeanPort">
+      <soap:address location="http://207.7.100.39/billing/cxf/soap.service"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

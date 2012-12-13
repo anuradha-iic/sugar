@@ -1,0 +1,11 @@
+NEW RELEASES SINCE VERSION 1.0
+
+
+AlineaSolCommonBase v1.2:
+
+- Portuguese Language Supported. Thanks to Pedro Ribeiro!! :)
+
+
+AlineaSolCommonBase v1.1:
+
+- French Language Supported. Thanks to Francis Richter!! :)
