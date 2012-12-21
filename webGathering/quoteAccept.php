@@ -284,7 +284,7 @@ if( isset($_REQUEST['record']) && $_REQUEST['record'] != '' )
  					$text   = preg_replace($search, $replace, $temp_val->value);
  					//echo $text;
 
-    				preg_match( '/src="([^"]*)"/i', $text, $match);
+                                    preg_match( '/src="([^"]*)"/i', $text, $match);
 					$img_path = $rootURL."/".$match[1];
 					$text = str_replace($match[1],$img_path,$text);
 					$text = preg_replace('/\{DATE\s+(.*?)\}/e',"date('\\1')",$text);

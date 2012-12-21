@@ -2,6 +2,15 @@
  //WARNING: The contents of this file are auto-generated
 
 
+//THIS FILE IS AUTO GENERATED, DO NOT MODIFY
+$mod_strings['LBL_AOS_QUOTES_NLI_SERVICEADDRESSES_FROM_NLI_SERVICEADDRESSES_TITLE'] = 'Service Addresses';
+$mod_strings['LBL_AOS_QUOTES_CONTACTS_FROM_CONTACTS_TITLE'] = 'Contacts';
+
+
+//THIS FILE IS AUTO GENERATED, DO NOT MODIFY
+$mod_strings['LBL_AOS_QUOTES_NLI_SERVICEADDRESSES_FROM_NLI_SERVICEADDRESSES_TITLE'] = 'Service Addresses';
+
+
 
 $mod_strings['LBL_UNIT'] = "Unit";
 $mod_strings['LBL_PRODUCT_CODE'] = "Product Code";
@@ -57,14 +66,5 @@ $mod_strings['LBL_QUOTE_INTRODUCTION'] = 'Quote Introduction';
 $mod_strings['LBL_QUOTE_FINALNOTES'] = 'Final Notes';
 
 
-
-
-//THIS FILE IS AUTO GENERATED, DO NOT MODIFY
-$mod_strings['LBL_AOS_QUOTES_NLI_SERVICEADDRESSES_FROM_NLI_SERVICEADDRESSES_TITLE'] = 'Service Addresses';
-
-
-//THIS FILE IS AUTO GENERATED, DO NOT MODIFY
-$mod_strings['LBL_AOS_QUOTES_NLI_SERVICEADDRESSES_FROM_NLI_SERVICEADDRESSES_TITLE'] = 'Service Addresses';
-$mod_strings['LBL_AOS_QUOTES_CONTACTS_FROM_CONTACTS_TITLE'] = 'Contacts';
 
 ?>

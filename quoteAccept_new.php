@@ -4,13 +4,13 @@ define("sugarEntry", TRUE);
 include("include/entryPoint.php");
 error_reporting(0);
 //require_once 'config.php'; 
-require_once 'webGathering/CallWebServiceSugarSoap.php';
+//require_once 'webGathering/CallWebServiceSugarSoap.php';
 require_once('modules/AOS_PDF_Templates/templateParser.php');
 
 require_once('modules/AOS_PDF_Templates/AOS_PDF_Templates.php');
 
 global $mod_strings;
-global $db,$sugar_config;
+global $db;
 if (!isset($db)) {
     $db = DBManagerFactory::getInstance();
 }
@@ -19,77 +19,26 @@ if (!isset($db)) {
 <html>
     <title>Quote Acceptance</title>
     <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />        
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <!--<script type="text/javascript" src="http://fbug.googlecode.com/svn/lite/branches/firebug1.4/content/firebug-lite-dev.js"></script>-->
         <script type="text/javascript">
             function checkings()
             {	
                 if((document.getElementById("accept1").checked==false))
                 {
-                    alert ('Please select checkbox to accept Quote.');
+                    alert ('Please select checkboxes to accept Quote.');
                     return false;
                 }
-                if(document.getElementById("accepted_by").value==""){
-                    alert ('Please enter Authorized Contact name in order to Accept.');
+                else if(document.getElementById("accept2").checked==false){
+                    alert ('Please select checkboxes to accept Quote.');
                     return false;
                 }
-//                if(document.getElementById("response_div").value=="")
-//                {                
-//                    alert('Please Wait..');
-//                    return false;
-//                }
-                if((document.getElementById("response_div").value!="") && (document.getElementById("response_div").value!="1")){
-                    
-                    alert(document.getElementById("response_div").value);
-                    return false;
-                }
-                
-                //return true;
-              
-            }
-            function check_authorized_contact()
-            {
-               /*if(document.getElementById("accepted_by").value==""){
-                    alert ('Please enter Authorized Contact name in order to Accept.');
-                    return false;
+                /*else{
+                        return true;
                 }*/
-                var accepted_by = document.getElementById("accepted_by").value;
-                var record = document.quote_online.record.value;
-                var xmlhttp;
-                if (window.XMLHttpRequest)
-                {// code for IE7+, Firefox, Chrome, Opera, Safari
-                  xmlhttp=new XMLHttpRequest();
-                }
-                else
-                {// code for IE6, IE5
-                  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                }
-                xmlhttp.onreadystatechange=function()
-                {
-                  if (xmlhttp.readyState<4)
-                  {                  
-                    document.getElementById('response_span').innerHTML = '<img src="ajax_loader.gif" />';
-                  } 
-                  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-                  {
-                    if(xmlhttp.responseText!=1)
-                    {
-                        alert(xmlhttp.responseText);
-                        document.getElementById("response_span").innerHTML=xmlhttp.responseText;
-                        document.getElementById("submit").disabled = true;
-                      
-                    }else{
-                            document.getElementById("response_span").innerHTML='';
-                            document.getElementById("submit").disabled = false;
-                    }
-                  }
-                }
-                xmlhttp.open("GET","check_authorized_contact.php?quoteID="+record+"&accepted_by="+accepted_by,true);
-                xmlhttp.send();               
-               
             }
         </script>
     </head>
-    <img src="<?php echo $sugar_config['site_url']; ?>custom/themes/default/images/cropped-MainHeader1.6.jpg" />
     <?php
     if (isset($_REQUEST['record']) && $_REQUEST['record'] != '') {
         $record = $_REQUEST['record'];
@@ -102,19 +51,37 @@ if (!isset($db)) {
         //$quote_focus->retrieve($record);
         //echo $quote_focus->template_ddown_c;
 
-        $soapclientObj = new CallWebServiceSugarSoap();
-        $soapclient = $soapclientObj->getsoapclientObj();
-        $soapclientObj->loginInsugar();
-        $session_id = $soapclientObj->getsessionID();
-        $user_guid = $soapclientObj->getuser_guid();
-
+//        $soapclientObj = new CallWebServiceSugarSoap();
+//        $soapclient = $soapclientObj->getsoapclientObj();
+//        $soapclientObj->loginInsugar();
+//        $session_id = $soapclientObj->getsessionID();
+//        $user_guid = $soapclientObj->getuser_guid();
+//      
+        echo "<pre>";  
+        // set up options array
+        $options = array(
+                "location" => 'http://localhost/sugar/soap.php',
+                "uri" => 'http://www.sugarcrm.com/sugarcrm',
+                "trace" => 1
+                );
+        //user authentication array
+        $user_auth = array(
+        "user_name" => 'admin',
+        "password" => md5('admin'),
+        "version" => '0.1'
+        );
+        // connect to soap server
+        $soapclient = new SoapClient(NULL, $options);
+        $response = $soapclient->login($user_auth,'');
+        
+        $session_id = $response->id;
 
         $totalContacts = array();
         $totalContactsinPDF = array();
         $totalCts = array();
 
         $resultArray = $soapclient->get_entry($session_id, 'AOS_Quotes', $record);
-        echo "<pre>";
+        
         $quote_data = $resultArray->entry_list[0]->name_value_list;
         
         //$quote_data = new AOS_Quotes();
@@ -144,7 +111,7 @@ if (!isset($db)) {
             //$SummaryDetails[$key] = $val;
             
         }
- //print_r($SummaryDetails);
+// print_r($SummaryDetails);
  
         //$templates = explode('^,^',trim($SummaryDetails['template_ddown_c'])); 		
 //echo $SummaryDetails['template_ddown_c'].'<br>';
@@ -422,8 +389,8 @@ if (!isset($db)) {
         $pdfTemplateArray = $soapclient->get_entry($session_id, 'AOS_PDF_Templates', $templateId);
         //print_r($pdfTemplateArray);
         $pdf_template_data = $pdfTemplateArray->entry_list[0]->name_value_list;
-        //print_r($pdf_template_data);
-        //die;
+        print_r($pdf_template_data);
+        
         foreach($pdf_template_data as $temp_val) {
         if($temp_val->name=='pdfheader')
         {
@@ -444,13 +411,7 @@ if (!isset($db)) {
 
         $text = preg_replace('/\{DATE\s+(.*?)\}/e', "date('\\1')", $text);
         $text = preg_replace('/x-small/i', "11px", $text);
-        //removing all images -- start
-        //preg_match_all( '/src="([^"]*)"/i', $text, $matches);
-        preg_match_all("/<img[^>]+\>/i", $text, $matches);
-        for($p=1;$p<count($matches[0]);$p++){
-            $text = str_replace($matches[0][$p],'',$text);            
-        }
-        //end
+        
         
         $text = str_replace("\$aos_quotes", "\$" . $module_type_low, $text);
         $text = str_replace("\$aos_invoices", "\$" . $module_type_low, $text);
@@ -663,26 +624,26 @@ if (!isset($db)) {
 
 
         }//desc=body if end &#194;
-//        if($temp_val->name=='pdffooter')
-//        {       
-//        $footer = preg_replace($search, $replace, $temp_val->value);
-//        //$footer = preg_replace($search, $replace, $template->pdffooter);
-//        echo $footer = templateParser::parse_template($footer, $object_arr, $SummaryDetails, $totalCts);
-//        }
+        if($temp_val->name=='pdffooter')
+        {
+        //echo html_entity_decode(str_replace('&nbsp;',' ',$temp_val->value));
+        //echo '<br/><h1>footer</h1>';	
+        $footer = preg_replace($search, $replace, $temp_val->value);
+        //$footer = preg_replace($search, $replace, $template->description);
+        echo $footer = templateParser::parse_template($footer, $object_arr, $SummaryDetails, $totalCts);
+        }
       }
         ?>
         <form name="quote_online" method="post" action="thankyou.php" onSubmit="return checkings();">
-            Accept Terms and Conditions:<input type="checkbox" name="accept_terms" id="accept1" /><br/>
-            Accepted By:<input type="text" name="accepted_by" id="accepted_by" onchange="if(this.value != '') check_authorized_contact();"/>
+            <input type="checkbox" name="accept_terms" id="accept1" />Accept Terms and Conditions
+            <input type="checkbox" name="agreement" id="accept2" />Agreement on Quotation
             <input type="hidden" name="record" value="<?php echo $record; ?>" readonly />
-            <input type="hidden" id="response_div" name="response_div" value=""/>
-            <font color="red"><span id="response_span"></span></font>
             <br>
-            <input type="submit" name="submit" id="submit" value="Submit" >
+            <input type="submit" name="submit" value="Submit">
         </form>
         <?php
     } else {
         die('Error retrieving record. This record may be deleted or you may not be authorized to view it.');
-    } 
+    }
     ?> 
 </html>

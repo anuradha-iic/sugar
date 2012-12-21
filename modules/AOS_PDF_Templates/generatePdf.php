@@ -654,8 +654,7 @@ $text = str_replace('--Other Customer Locations Contacts--', $contacts_locations
 				$fp = fopen('cache/upload/attachfile.pdf','wb');
 				fclose($fp);
 				$pdf->Output('cache/upload/attachfile.pdf','F');
-				//By IIC
-				sendEmail::send_email($module,$module_type,'online_quote',$file_name, true);
+				sendEmail::send_email($module,$module_type, '',$file_name, true);
 			}
 		}catch(mPDF_exception $e){
 			echo $e;

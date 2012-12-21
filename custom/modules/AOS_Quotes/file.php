@@ -102,16 +102,20 @@ function UpdateOpportunitiesQuotesMethod(&$bean, $event, $arguments)
 	
 	function saveQuoteWebaddress(&$bean, $event, $arguments)
 	{
-		global $sugar_config;
+		global $sugar_config,$db;
 		$quoteId = $bean->id;
 		$module_name=$bean->module_name;
 		
-		
+                $url = $sugar_config['site_url'];
+                $quote_url="<a href=".$url."quoteAccept.php?module=$module_name&record=$quoteId>".$url."quoteAccept.php?module=$module_name&record=$quoteId</a>";
+		$query3 = "UPDATE aos_quotes_cstm SET quote_webaddress_c='".$quote_url."' WHERE id_c='".$quoteId."' ";
+		$db->query($query3);
+                
 		//$bean->quote_webaddress_c=$sugar_config['site_url']."webGathering/index.php?record=$quoteId";
-		$url = $sugar_config['site_url'];
+		
 		//echo "<a href=".$url."webGathering/index.php?record=$quoteId>".$url."webGathering/index.php?record=$quoteId</a>";
-		$bean->quote_webaddress_c="<a href=".$url."quoteAccept.php?module=$module_name&record=$quoteId>".$url."quoteAccept.php?module=$module_name&record=$quoteId</a>";
-		$bean->save();
+		//$bean->quote_webaddress_c="<a href=".$url."quoteAccept.php?module=$module_name&record=$quoteId>".$url."quoteAccept.php?module=$module_name&record=$quoteId</a>";
+		//$bean->save();
 	}
 	
  
